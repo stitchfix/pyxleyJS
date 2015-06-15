@@ -6,7 +6,7 @@ var ApiButton = require('./buttonFilters').ApiButton;
 var Button = ReactBootstrap.Button;
 var ButtonGroup = ReactBootstrap.ButtonGroup;
 
-FilterFactory = function(type) {
+var FilterFactory = function(type) {
 
     if (typeof FilterFactory[type] != 'function'){
         throw new Error(type + ' is not a valid filter.');

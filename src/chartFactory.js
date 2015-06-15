@@ -6,7 +6,7 @@ var Row = ReactBootstrap.Row;
 var Button = ReactBootstrap.Button;
 var Datamaps = require('./datamap').Datamaps;
 
-ChartFactory = function(type) {
+var ChartFactory = function(type) {
 
     if (typeof ChartFactory[type] != 'function'){
         throw new Error(type + ' is not a valid chart type.');
