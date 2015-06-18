@@ -28,7 +28,6 @@ const Datamaps = React.createClass({
     _update: function(params){
         $.get(this.props.options.url.concat("?", $.param(params)),
             function(result){
-                console.log(this.state.chart);
                 this.state.chart.updateChoropleth(result.data);
         }.bind(this));
     },
