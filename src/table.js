@@ -33,9 +33,11 @@ var Table = React.createClass({
             if(typeof(options[key]) == "string"){
                 if(options[key] == "true" || options[key] == "false"){
                     out[key] = (options[key] == "true");
+                } else {
+                    out[key] = options[key];
                 }
             } else {
-                out[key] = options[key]
+                out[key] = options[key];
             }
         }
         return(out);
@@ -55,7 +57,6 @@ var Table = React.createClass({
                     rightColumns: this.props.options.rightFixed
                 });
             };
-
         }.bind(this));
     },
     _update: function(params) {
