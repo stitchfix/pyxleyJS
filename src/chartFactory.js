@@ -5,8 +5,9 @@ var Filter = require('./filterFactory').Filter;
 var Row = ReactBootstrap.Row;
 var Button = ReactBootstrap.Button;
 var Datamaps = require('./datamap').Datamaps;
+var MetricsGraphics = require('./metricsgraphics').MetricsGraphics;
 
-ChartFactory = function(type) {
+var ChartFactory = function(type) {
 
     if (typeof ChartFactory[type] != 'function'){
         throw new Error(type + ' is not a valid chart type.');
@@ -18,6 +19,7 @@ ChartFactory = function(type) {
 ChartFactory.LinePlot = LinePlot;
 ChartFactory.Table = Table;
 ChartFactory.Datamaps = Datamaps;
+ChartFactory.MetricsGraphics = MetricsGraphics;
 
 const Chart = React.createClass({
     getDefaultProps: function() {

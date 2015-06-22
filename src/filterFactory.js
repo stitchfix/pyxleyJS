@@ -5,8 +5,10 @@ var ConditionalSelectButton = require('./buttonFilters').ConditionalSelectButton
 var ApiButton = require('./buttonFilters').ApiButton;
 var Button = ReactBootstrap.Button;
 var ButtonGroup = ReactBootstrap.ButtonGroup;
+var SliderInput = require('./slider').SliderInput;
+var DynamicSearch = require('./dynamicSearch').DynamicSearch;
 
-FilterFactory = function(type) {
+var FilterFactory = function(type) {
 
     if (typeof FilterFactory[type] != 'function'){
         throw new Error(type + ' is not a valid filter.');
@@ -15,10 +17,12 @@ FilterFactory = function(type) {
     return FilterFactory[type];
 };
 
+FilterFactory.SliderInput = SliderInput;
 FilterFactory.SelectButton = SelectButton;
 FilterFactory.ConditionalSelectButton = ConditionalSelectButton;
 FilterFactory.ApiButton = ApiButton;
 FilterFactory.DownloadButton = DownloadButton;
+FilterFactory.DynamicSearch = DynamicSearch;
 
 const Filter = React.createClass({
     getDefaultProps: function() {
