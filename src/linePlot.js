@@ -32,7 +32,7 @@ var LinePlot = React.createClass({
         d3.json(this.props.options.url,
             function(error, data){
 
-                var svg = d3.select("#".concat(this.props.options.chartid, " svg"))
+                d3.select("#".concat(this.props.options.chartid, " svg"))
                     .datum(data.result)
                     .call(chart);
             }.bind(this));
@@ -45,7 +45,7 @@ var LinePlot = React.createClass({
         d3.json(this.props.options.url.concat("?", $.param(params)),
             function(error, data) {
 
-            var svg = d3.select("#".concat(this.props.options.chartid, " svg"))
+            d3.select("#".concat(this.props.options.chartid, " svg"))
                 .datum(data.result)
                 .transition()
                 .duration(500)

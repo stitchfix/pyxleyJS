@@ -1,0 +1,22 @@
+{
+  "name": "pyxley",
+  "version": "0.0.1",
+  "homepage": "https://github.com/stitchfix/pyxleyJS",
+  "description": "React components for use with pyxley python package",
+  "main": "build/pyxley.js",
+  "keywords": [
+    "react",
+    "dashboards"
+  ],
+  "authors": [
+    "Nicholas Kridler"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

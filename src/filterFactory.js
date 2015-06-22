@@ -3,8 +3,6 @@ var SelectButton = require('./buttonFilters').SelectButton;
 var DownloadButton = require('./buttonFilters').DownloadButton;
 var ConditionalSelectButton = require('./buttonFilters').ConditionalSelectButton;
 var ApiButton = require('./buttonFilters').ApiButton;
-var Button = ReactBootstrap.Button;
-var ButtonGroup = ReactBootstrap.ButtonGroup;
 var SliderInput = require('./slider').SliderInput;
 var DynamicSearch = require('./dynamicSearch').DynamicSearch;
 

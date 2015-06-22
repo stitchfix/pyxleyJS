@@ -4,7 +4,6 @@ var DropdownMenu = ReactBootstrap.DropdownMenu;
 var DropdownStateMixin = ReactBootstrap.DropdownStateMixin;
 var BootstrapMixin = ReactBootstrap.BootstrapMixin;
 var MenuItem = ReactBootstrap.MenuItem;
-var Button = ReactBootstrap.Button;
 var classNames = require('classnames');
 /** Modeled after
     realpython.com/blog/python/the-ultimate-flask-front-end-part-2
