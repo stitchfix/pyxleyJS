@@ -4,21 +4,6 @@ var MetricsGraphics = React.createClass({
             options: React.PropTypes.object
         };
     },
-    _fixBoolOptions: function(options){
-        var out = {}
-        for(var key in options){
-            if(typeof(options[key]) == "string"){
-                if(options[key] == "true" || options[key] == "false"){
-                    out[key] = (options[key] == "true");
-                } else {
-                    out[key] = options[key];
-                }
-            } else {
-                out[key] = options[key];
-            }
-        }
-        return(out);
-    },
     componentDidMount: function() {
         this._initialize(this.props.options.params.init_params);
     },
@@ -26,8 +11,8 @@ var MetricsGraphics = React.createClass({
         d3.json(this.props.options.url.concat("?",$.param(params)),
             function(error, data){
 
-                var options = this._fixBoolOptions(this.props.options.params);
-                if(data.date == "true"){
+                var options = this.props.options.params;
+                if(data.date){
                     for(var i=0; i < data.result.length; i++){
                         data.result[i] = MG.convert.date(data.result[i], "x");
                     }
@@ -39,8 +24,8 @@ var MetricsGraphics = React.createClass({
     _update: function(params) {
         d3.json(this.props.options.url.concat("?",$.param(params)),
             function(error, data){
-                var options = this._fixBoolOptions(this.props.options.params);
-                if(data.date == "true"){
+                var options = this.props.options.params;
+                if(data.date){
                     for(var i=0; i < data.result.length; i++){
                         data.result[i] = MG.convert.date(data.result[i], "x");
                     }
