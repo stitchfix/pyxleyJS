@@ -27,26 +27,11 @@ var Table = React.createClass({
     componentDidMount: function() {
         this._initialize();
     },
-    _checkTableOptions: function(options){
-        var out = {}
-        for(var key in options){
-            if(typeof(options[key]) == "string"){
-                if(options[key] == "true" || options[key] == "false"){
-                    out[key] = (options[key] == "true");
-                } else {
-                    out[key] = options[key];
-                }
-            } else {
-                out[key] = options[key];
-            }
-        }
-        return(out);
-    },
     _initialize: function() {
 
         $.get(this.props.options.url.concat("?",$.param(this.props.options.params)), function(result){
             this.setState({columns: result.columns});
-            var options = this._checkTableOptions(this.props.options.table_options);
+            var options = this.props.options.table_options;
             options.data = result.data;
             options.columns = result.columns;
             options.aaData = result.data;
