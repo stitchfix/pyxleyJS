@@ -30,9 +30,12 @@ const CheckboxGroup = React.createClass({
             );
         });
         return (
-            <div>
-            {labels}
+            <div className="inputgrp">
+            <div className="btn-group horizontal">
+            <Button onClick={this.props.onChange}>Submit</Button>
             <Button onClick={this._resetChecked}>Reset</Button>
+            </div>
+            {labels}
             </div>
             );
     }

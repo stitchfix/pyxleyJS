@@ -145,12 +145,18 @@ var ApiButton = React.createClass({
             this.setState({items: result.data});
         }.bind(this));
     },
+    update: function(params){
+        $.get(this.props.options.url.concat("?", $.param(params)),
+            function(result){
+                this.setState({items: result.data});
+        }.bind(this));
+    },
     render: function() {
         var opts = {
             items: this.state.items,
             alias: this.props.options.alias,
             default: this.props.options.default,
-            title: this.props.options.title
+            label: this.props.options.label
         };
         return (
             <SelectButton ref="apiBtn"

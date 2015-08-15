@@ -5,6 +5,7 @@ var ConditionalSelectButton = require('./buttonFilters').ConditionalSelectButton
 var ApiButton = require('./buttonFilters').ApiButton;
 var SliderInput = require('./slider').SliderInput;
 var DynamicSearch = require('./dynamicSearch').DynamicSearch;
+var CheckboxGroup = require('./checkbox').CheckboxGroup;
 
 var FilterFactory = function(type) {
 
@@ -21,6 +22,7 @@ FilterFactory.ConditionalSelectButton = ConditionalSelectButton;
 FilterFactory.ApiButton = ApiButton;
 FilterFactory.DownloadButton = DownloadButton;
 FilterFactory.DynamicSearch = DynamicSearch;
+FilterFactory.CheckboxGroup = CheckboxGroup;
 
 const Filter = React.createClass({
     getDefaultProps: function() {

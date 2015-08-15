@@ -3,6 +3,8 @@ var LinePlot = require('./linePlot').LinePlot;
 var Table = require('./table').Table;
 var Datamaps = require('./datamap').Datamaps;
 var MetricsGraphics = require('./metricsgraphics').MetricsGraphics;
+var NVD3Chart = require('./nvd3').NVD3Chart;
+
 
 var ChartFactory = function(type) {
 
@@ -17,6 +19,7 @@ ChartFactory.LinePlot = LinePlot;
 ChartFactory.Table = Table;
 ChartFactory.Datamaps = Datamaps;
 ChartFactory.MetricsGraphics = MetricsGraphics;
+ChartFactory.NVD3Chart = NVD3Chart;
 
 const Chart = React.createClass({
     getDefaultProps: function() {

@@ -8,7 +8,8 @@ var Table = React.createClass({
                     deferRender: true,
                     paging: false,
                     scrollX: true,
-                    bSort: false,                },
+                    bSort: false,
+                },
                 id: "mytable",
                 url: "",
                 params: {}
@@ -50,7 +51,7 @@ var Table = React.createClass({
     },
     _update: function(params) {
         var _table = $('#'.concat(this.props.options.id)).dataTable();
-        _table.ajax.url(this.props.options.url.concat("?",$.param(params))).load();
+        _table.api().ajax.url(this.props.options.url.concat("?",$.param(params))).load();
 
     },
     render: function() {
