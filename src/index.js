@@ -4,6 +4,7 @@ var Filter = require('./filterFactory').Filter;
 var Chart = require('./chartFactory').Chart;
 var Table = require('./table').Table;
 var Datamaps = require('./datamap').Datamaps;
+var NVD3 = require('./nvd3').NVD3;
 var MetricsGraphics = require('./metricsgraphics').MetricsGraphics;
 var SelectButton = require('./buttonFilters').SelectButton;
 var ConditionalSelectButton = require('./buttonFilters').ConditionalSelectButton;
@@ -26,7 +27,8 @@ export default {
     DownloadButton,
     DynamicSearch,
     SliderInput,
-    CheckboxGroup
+    CheckboxGroup,
+    NVD3
 };
 
 

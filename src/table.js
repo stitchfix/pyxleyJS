@@ -8,7 +8,8 @@ var Table = React.createClass({
                     deferRender: true,
                     paging: false,
                     scrollX: true,
-                    bSort: false,                },
+                    bSort: false,
+                },
                 id: "mytable",
                 url: "",
                 params: {}
