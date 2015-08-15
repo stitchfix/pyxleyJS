@@ -35,6 +35,12 @@ const DynamicSearch = React.createClass({
     componentDidMount: function() {
         this._fetchAPIData();
     },
+    update: function(params){
+        $.get(this.props.options.url.concat("?", $.param(params)),
+            function(result){
+                this.setState({items: result.data});
+        }.bind(this));
+    },
     _fetchAPIData: function(){
         $.get(this.props.options.url, function(result){
             this.setState({items: result.data});
