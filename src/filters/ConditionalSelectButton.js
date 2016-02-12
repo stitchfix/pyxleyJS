@@ -1,9 +1,9 @@
 import React from 'react';
 import BaseFilter from './BaseFilter';
-import SelectButton from './SelectButton';
+import {SelectButton} from './SelectButton';
 import {DropdownButton, MenuItem} from 'react-bootstrap';
 
-export default class ConditionalSelectButton extends BaseFilter {
+export class ConditionalSelectButton extends BaseFilter {
     constructor(props){
         super(props);
     }
