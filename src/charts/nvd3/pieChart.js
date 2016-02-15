@@ -1,4 +1,6 @@
 import React from 'react';
+import nv from 'nvd3';
+import d3 from 'd3';
 
 var PieChart = function() {
     this.chart = nv.models.pieChart();
@@ -33,4 +35,4 @@ PieChart.prototype.get = function(chartid, url, params){
     }.bind(this));
 };
 
-export PieChart;
+export default PieChart;

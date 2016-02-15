@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import BaseFilter from './BaseFilter';
 
 export class SliderInput extends BaseFilter {
@@ -8,7 +9,7 @@ export class SliderInput extends BaseFilter {
 
     _handleChange(e) {
         e.preventDefault();
-        var slider = this.getDOMNode();
+        var slider = ReactDOM.findDOMNode(this);
         this.setState({value: slider.value});
 
         if(this.props.dynamic){

@@ -1,4 +1,5 @@
 import React from 'react';
+$["dataTable"] = require("datatables");
 
 export class Table extends React.Component {
     constructor(props) {

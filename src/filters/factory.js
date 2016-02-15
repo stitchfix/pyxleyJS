@@ -1,11 +1,11 @@
 import React from 'react';
 import {SelectButton} from './SelectButton';
-// import ConditionalSelectButton from './buttonFilters';
-// import ApiButton from './buttonFilters';
-// import DownloadButton from './buttonFilters';
-// import SliderInput from './slider';
-// import DynamicSearch from './dynamicSearch';
-// import CheckboxGroup from './checkbox';
+import {ConditionalSelectButton} from './ConditionalSelectButton';
+import {ApiButton} from './ApiButton';
+import {DownloadButton} from './DownloadButton';
+import {SliderInput} from './SliderInput';
+import {DynamicSearchInput} from './DynamicSearchInput';
+import {CheckboxGroup} from './CheckboxGroup';
 
 var FilterFactory = function(type) {
     if (typeof FilterFactory[type] != 'function'){
@@ -15,13 +15,13 @@ var FilterFactory = function(type) {
     return FilterFactory[type];
 };
 
-// FilterFactory.SliderInput = SliderInput;
+FilterFactory.SliderInput = SliderInput;
 FilterFactory.SelectButton = SelectButton;
-// FilterFactory.ConditionalSelectButton = ConditionalSelectButton;
-// FilterFactory.ApiButton = ApiButton;
-// FilterFactory.DownloadButton = DownloadButton;
-// FilterFactory.DynamicSearch = DynamicSearch;
-// FilterFactory.CheckboxGroup = CheckboxGroup;
+FilterFactory.ConditionalSelectButton = ConditionalSelectButton;
+FilterFactory.ApiButton = ApiButton;
+FilterFactory.DownloadButton = DownloadButton;
+FilterFactory.DynamicSearch = DynamicSearchInput;
+FilterFactory.CheckboxGroup = CheckboxGroup;
 
 export class Filter extends React.Component {
     constructor(props) {
@@ -39,3 +39,5 @@ export class Filter extends React.Component {
         );
     }
 }
+
+export {FilterFactory};

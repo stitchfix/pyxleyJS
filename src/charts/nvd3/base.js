@@ -1,6 +1,6 @@
 import React from 'react';
-import {TwoAxisFocus} from './twoAxisFocus';
-import {PieChart} from './pieChart';
+import TwoAxisFocus from './twoAxisFocus';
+import PieChart from './pieChart';
 
 var NVD3Factory = function(type, options){
     var chart;

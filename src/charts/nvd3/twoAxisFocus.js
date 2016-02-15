@@ -1,6 +1,8 @@
 // Adapted from nvd3.org Line With View Finder
 // http://nvd3.org/examples/lineWithFocus.html
 // and multichart http://nvd3.org/examples/linePlusBar.html
+import d3 from 'd3';
+import nv from 'nvd3';
 
 const twoAxisFocusChart = function() {
     "use strict";
@@ -649,9 +651,9 @@ TwoAxisFocus.prototype.get = function(chartid, url, params){
             d3.select("#".concat(chartid, " svg"))
                 .datum(result.data)
                 .call(this.chart);
-            nv.utils.windowResize(function() { this.chart.update() });
+            nv.utils.windowResize(this.chart.update);
 
         }.bind(this));
 };
 
-export TwoAxisFocus;
+export default TwoAxisFocus;

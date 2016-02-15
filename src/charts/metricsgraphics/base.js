@@ -1,4 +1,5 @@
 import React from 'react';
+import MG from 'metrics-graphics';
 
 export class MetricsGraphics extends React.Component {
     constructor(props) {
