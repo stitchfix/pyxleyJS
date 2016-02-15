@@ -1,4 +1,4 @@
-import Plotly from 'plotly.js';
+// import Plotly from 'plotly.js';
 import React from 'react';
 
 export class PlotlyAPI extends React.Component {
