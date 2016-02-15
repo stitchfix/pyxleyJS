@@ -28,7 +28,7 @@ module.exports = {
             "jquery": "jQuery"
         },
         {
-            "plotly.js": "Plotly"
+            "plotly\.js": "Plotly"
         },
         {
             'react': {
