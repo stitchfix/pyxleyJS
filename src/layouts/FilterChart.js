@@ -1,18 +1,14 @@
-var Button = ReactBootstrap.Button;
-var Chart = require('./chartFactory').Chart;
-var Filter = require('./filterFactory').Filter;
-var Row = ReactBootstrap.Row;
+import React from 'react';
+import {Button, Row} from 'react-bootstrap';
+import {Filter} from '../filters/factory';
+import {Chart} from '../charts/factory';
 
-const FilterChart = React.createClass({
-    getDefaultProps: function() {
-        return {
-            filters: React.PropTypes.array,
-            filter_style: React.PropTypes.string,
-            charts: React.PropTypes.array,
-            dynamic: React.PropTypes.string
-        };
-    },
-    _handleClick: function(input) {
+export class FilterChart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    _handleClick(input) {
         var params = {};
         for(var i = 0; i < this.props.filters.length; i++){
             var vals = this.refs["filter_".concat(i)].refs.filter.getCurrentState();
@@ -29,12 +25,14 @@ const FilterChart = React.createClass({
             this.refs["chart_".concat(i)].update(params);
         }
         return params;
-    },
-    render: function(){
+    }
+
+    render() {
         var items = this.props.filters.map(function(x, index){
             return(<Filter
+                key={"fkey_".concat(index)}
                 ref={"filter_".concat(index)}
-                onChange={this._handleClick}
+                onChange={this._handleClick.bind(this)}
                 dynamic={this.props.dynamic}
                 type={x.type} options={x.options}/>);
         }.bind(this));
@@ -44,11 +42,12 @@ const FilterChart = React.createClass({
                 ref={"chart_".concat(index)}
                 type={x.type} options={x.options}/>);
         });
+
+
         return (
             <div>
                 <Row>
                 <div className={this.props.filter_style}>
-                {this.props.dynamic ? null : <Button onClick={this._handleClick} >Update!</Button>}
                 {items}
                 </div>
                 </Row>
@@ -56,8 +55,6 @@ const FilterChart = React.createClass({
                 {charts}
                 </Row>
             </div>
-            );
+        );
     }
-});
-
-module.exports.FilterChart = FilterChart;
+}
