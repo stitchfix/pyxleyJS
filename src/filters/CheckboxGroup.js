@@ -1,44 +1,44 @@
+import React from 'react';
+import {Input, Button} from 'react-bootstrap';
 
-var Input = ReactBootstrap.Input;
-var Button = ReactBootstrap.Button;
+export class CheckboxGroup extends React.Component {
+    constructor(props) {
+        super(props);
 
-const CheckboxGroup = React.createClass({
-    getDefaultProps: function() {
-        return {
-            options: React.PropTypes.object,
-            dynamic: false,
-            onChange: React.PropTypes.func
-        };
-    },
-    getCurrentState: function() {
+    }
+
+    getCurrentState() {
         var result = {};
         for(var i = 0; i < this.props.options.labels.length; i++){
             result[this.props.options.aliases[i]] =
                 this.refs["checkbox_".concat(i)].getChecked();
         }
         return result;
-    },
-    _resetChecked: function(){
+    }
+
+    _resetChecked() {
         for(var i = 0; i < this.props.options.labels.length; i++){
             this.refs["checkbox_".concat(i)].getInputDOMNode().checked = false;
         }
-    },
-    render: function() {
+    }
+
+    render() {
         var labels = this.props.options.labels.map(function(item, index){
             return (
-                <Input ref={"checkbox_".concat(index)} type="checkbox" label={item}/>
+                <Input
+                    ref={"checkbox_".concat(index)}
+                    type="checkbox" label={item}/>
             );
         });
         return (
             <div className="inputgrp">
             <div className="btn-group horizontal">
-            <Button onClick={this.props.onChange}>Submit</Button>
-            <Button onClick={this._resetChecked}>Reset</Button>
+                <Button onClick={this.props.onChange.bind(this)}>Submit</Button>
+                <Button onClick={this._resetChecked.bind(this)}>Reset</Button>
             </div>
             {labels}
             </div>
             );
     }
-});
 
-module.exports.CheckboxGroup = CheckboxGroup;
+}

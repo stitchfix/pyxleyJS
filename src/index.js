@@ -1,35 +1,19 @@
 
-var FilterChart = require('./layouts').FilterChart;
-var Filter = require('./filterFactory').Filter;
-var Chart = require('./chartFactory').Chart;
-var Table = require('./table').Table;
-var Datamaps = require('./datamap').Datamaps;
-var NVD3 = require('./nvd3').NVD3;
-var MetricsGraphics = require('./metricsgraphics').MetricsGraphics;
-var SelectButton = require('./buttonFilters').SelectButton;
-var ConditionalSelectButton = require('./buttonFilters').ConditionalSelectButton;
-var ApiButton = require('./buttonFilters').ApiButton;
-var DownloadButton = require('./buttonFilters').DownloadButton;
-var DynamicSearch = require('./dynamicSearch').DynamicSearch;
-var SliderInput = require('./slider').SliderInput;
-var CheckboxGroup = require('./checkbox').CheckboxGroup;
 
-export default {
-    Filter,
-    Chart,
-    FilterChart,
-    Table,
-    Datamaps,
-    MetricsGraphics,
-    SelectButton,
-    ConditionalSelectButton,
-    ApiButton,
-    DownloadButton,
-    DynamicSearch,
-    SliderInput,
-    CheckboxGroup,
-    NVD3
-};
-
-
-
+export {ChartFactory} from './charts/factory.js';
+export {FilterFactory} from './filters/factory.js';
+export {FilterChart} from './layouts/FilterChart';
+export {Filter} from './filters/factory.js';
+export {Chart} from './charts/factory.js';
+export {Table} from './charts/datatables/base.js';
+export {MetricsGraphics} from './charts/metricsgraphics/base.js';
+export {NVD3Chart} from './charts/nvd3/base.js';
+export {Datamaps} from './charts/nvd3/base.js';
+export {PlotlyAPI} from './charts/plotly/base.js';
+import {SelectButton} from './filters/SelectButton';
+import {ConditionalSelectButton} from './filters/ConditionalSelectButton';
+import {ApiButton} from './filters/ApiButton';
+import {DownloadButton} from './filters/DownloadButton';
+import {SliderInput} from './filters/SliderInput';
+import {DynamicSearchInput} from './filters/DynamicSearchInput';
+import {CheckboxGroup} from './filters/CheckboxGroup';

@@ -1,4 +1,7 @@
+import 'datatables/media/css/jquery.dataTables.min.css';
+require("datatables");
 import React from 'react';
+$["dataTable"] = require("datatables");
 
 export class Table extends React.Component {
     constructor(props) {
