@@ -34,6 +34,7 @@ export class FilterChart extends React.Component {
                 ref={"filter_".concat(index)}
                 onChange={this._handleClick.bind(this)}
                 dynamic={this.props.dynamic}
+                id={"filter_".concat(index)}
                 type={x.type} options={x.options}/>);
         }.bind(this));
 

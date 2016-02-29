@@ -1,5 +1,7 @@
+
+import 'metrics-graphics/dist/metricsgraphics.css';
 import React from 'react';
-import MG from 'metrics-graphics';
+// import MG from 'metrics-graphics';
 
 export class MetricsGraphics extends React.Component {
     constructor(props) {

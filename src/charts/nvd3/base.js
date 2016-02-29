@@ -1,3 +1,5 @@
+import 'nvd3/build/nv.d3.min.css';
+
 import React from 'react';
 import TwoAxisFocus from './twoAxisFocus';
 import PieChart from './pieChart';

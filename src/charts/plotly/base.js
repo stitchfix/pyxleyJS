@@ -1,5 +1,5 @@
-// import Plotly from 'plotly.js';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export class PlotlyAPI extends React.Component {
     constructor(props) {
@@ -22,11 +22,14 @@ export class PlotlyAPI extends React.Component {
 
     componentDidMount() {
         this._update(this.props.options.params);
+
     }
 
     render() {
         return (
+            <div>
             <div id={this.props.options.chartid}></div>
+            </div>
         );
     }
 }

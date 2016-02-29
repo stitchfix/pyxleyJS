@@ -2,7 +2,6 @@
 // http://nvd3.org/examples/lineWithFocus.html
 // and multichart http://nvd3.org/examples/linePlusBar.html
 import d3 from 'd3';
-import nv from 'nvd3';
 
 const twoAxisFocusChart = function() {
     "use strict";

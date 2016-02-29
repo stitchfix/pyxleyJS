@@ -1,5 +1,5 @@
 import React from 'react';
-import nv from 'nvd3';
+// import nv from 'nvd3';
 import d3 from 'd3';
 
 var PieChart = function() {

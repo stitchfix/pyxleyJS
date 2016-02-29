@@ -17,18 +17,46 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react']
                 }
+            },
+            {
+              test: /\.css$/,
+              loaders: ['style', 'css', 'sass']
+            },
+            {
+              test: /\.png$/,
+              loader: "url-loader?mimetype=image/png"
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "file"
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                loader:"url?prefix=font/&limit=5000"
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?limit=10000&mimetype=application/octet-stream"
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url?limit=10000&mimetype=image/svg+xml"
             }
+
         ]
     },
     externals: [
         {
+            "plotly\.js": "Plotly"
+        },
+        {
             "datamaps": "Datamap"
         },
         {
-            "jquery": "jQuery"
+            "metrics-graphics": "MG"
         },
         {
-            "plotly\.js": "Plotly"
+            "nvd3": "nv"
         },
         {
             'react': {
