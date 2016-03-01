@@ -23,17 +23,16 @@ class InputMenu extends React.Component {
 
       return filtered;
     }
-
+    
     render() {
 
         return (
-            <div className={"dropdown-menu"}>
 
-            <ul className="list-unstyled">
+
+            <ul className={"dropdown-menu"}>
                 { this.filterChildren() }
             </ul>
 
-            </div>
         );
     }
 }

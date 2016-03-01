@@ -19,7 +19,7 @@ export class ApiButton extends React.Component {
     }
 
     _fetchAPIData(params) {
-        $.get(this.props.options.url.concat($.param(params)),
+        $.get(this.props.options.url.concat('?', $.param(params)),
             function(result){
                 this.setState({items: result.data});
             }.bind(this)
