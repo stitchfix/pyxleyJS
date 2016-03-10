@@ -56,6 +56,9 @@ module.exports = {
             "metrics-graphics": "MG"
         },
         {
+            "d3": "d3"
+        },
+        {
             "nvd3": "nv"
         },
         {
