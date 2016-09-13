@@ -14,7 +14,8 @@ export class PlotlyAPI extends React.Component {
                 Plotly.newPlot(
                     this.props.options.chartid,
                     result.data,
-                    result.layout
+                    result.layout,
+                    result.config
                 )
             }.bind(this)
         );
