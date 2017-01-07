@@ -17,3 +17,4 @@ import {DownloadButton} from './filters/DownloadButton';
 import {SliderInput} from './filters/SliderInput';
 import {DynamicSearchInput} from './filters/DynamicSearchInput';
 import {CheckboxGroup} from './filters/CheckboxGroup';
+import {ReactSelect} from './filters/ReactSelect';

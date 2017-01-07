@@ -6,6 +6,7 @@ import {DownloadButton} from './DownloadButton';
 import {SliderInput} from './SliderInput';
 import {DynamicSearchInput} from './DynamicSearchInput';
 import {CheckboxGroup} from './CheckboxGroup';
+import {ReactSelect} from './ReactSelect';
 
 var FilterFactory = function(type) {
     if (typeof FilterFactory[type] != 'function'){
@@ -22,14 +23,15 @@ FilterFactory.ApiButton = ApiButton;
 FilterFactory.DownloadButton = DownloadButton;
 FilterFactory.DynamicSearch = DynamicSearchInput;
 FilterFactory.CheckboxGroup = CheckboxGroup;
+FilterFactory.ReactSelect = ReactSelect;
 
-export class Filter extends React.Component {
+class Filter extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        var Z = FilterFactory(this.props.type);
+        var Z = this.props.filter_factory(this.props.type);
         return (
             <Z
                 ref={"filter"}
@@ -41,4 +43,9 @@ export class Filter extends React.Component {
     }
 }
 
-export {FilterFactory};
+Filter.defaultProps = {
+    filter_factory: FilterFactory
+};
+
+
+export {Filter, FilterFactory};
