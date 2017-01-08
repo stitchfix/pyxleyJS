@@ -9,7 +9,6 @@ export class ConditionalSelectButton extends BaseFilter {
     }
 
     _handleClick(index, text, e) {
-        e.preventDefault();
         this.setState({
             selected: index,
             value: text
