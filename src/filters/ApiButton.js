@@ -39,6 +39,7 @@ export class ApiButton extends React.Component {
         };
         return (
             <SelectButton ref="apiBtn"
+                id={this.props.id}
                 onChange={this.props.onChange}
                 dynamic={this.props.dynamic}
                 options={opts}/>
