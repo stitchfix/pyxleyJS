@@ -7,8 +7,7 @@ export class SelectButton extends BaseFilter {
         super(props);
     }
 
-    _handleClick(index, text, e)  {
-        e.preventDefault();
+    _handleClick(index, text)  {
         this.setState({
             selected: index,
             value: text

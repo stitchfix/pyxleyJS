@@ -7,8 +7,7 @@ export class SliderInput extends BaseFilter {
         super(props);
     }
 
-    _handleChange(e) {
-        e.preventDefault();
+    _handleChange() {
         var slider = ReactDOM.findDOMNode(this);
         this.setState({value: slider.value});
 
