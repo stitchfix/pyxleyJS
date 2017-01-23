@@ -3,6 +3,9 @@
 export {ChartFactory} from './charts/factory.js';
 export {FilterFactory} from './filters/factory.js';
 export {FilterChart} from './layouts/FilterChart';
+export {SimpleChart} from './layouts/SimpleChart';
+export {LayoutFactory, Layout} from './layouts/factory.js';
+export {Navs} from './layouts/navbar.js';
 export {Filter} from './filters/factory.js';
 export {Chart} from './charts/factory.js';
 export {Table} from './charts/datatables/base.js';

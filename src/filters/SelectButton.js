@@ -13,13 +13,11 @@ export class SelectButton extends BaseFilter {
             value: text
         });
 
-        if(this.props.dynamic){
-            var result = {
-                alias: this.props.options.alias,
-                value: text
-            };
-            this.props.onChange([result]);
-        }
+        var result = {
+            alias: this.props.options.alias,
+            value: text
+        };
+        this.props.onChange([result]);
     }
 
     render() {

@@ -1,9 +1,9 @@
 import React from 'react';
-import {Col, Grid} from 'react-bootstrap';
+import {Row, Grid} from 'react-bootstrap';
 import {Filter} from '../filters/factory';
 import {Chart} from '../charts/factory';
 
-class FilterChart extends React.Component {
+class SimpleChart extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -92,13 +92,13 @@ class FilterChart extends React.Component {
         return (
 
                 <Grid>
-                <Col xs={6} md={2}>
+                <Row>
                     {filters}
-                </Col>
+                </Row>
 
-                <Col xs={12} md={10}>
+                <Row>
                     {charts}
-                </Col>
+                </Row>
                 </Grid>
 
             );
@@ -107,4 +107,4 @@ class FilterChart extends React.Component {
 }
 
 
-export {FilterChart};
+export {SimpleChart};

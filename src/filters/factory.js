@@ -36,7 +36,6 @@ class Filter extends React.Component {
             <Z
                 ref={"filter"}
                 id={this.props.id}
-                dynamic={this.props.dynamic}
                 onChange={this.props.onChange}
                 options={this.props.options} />
         );

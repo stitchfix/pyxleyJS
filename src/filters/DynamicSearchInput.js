@@ -23,16 +23,13 @@ class InputMenu extends React.Component {
 
       return filtered;
     }
-    
+
     render() {
 
         return (
-
-
             <ul className={"dropdown-menu"}>
                 { this.filterChildren() }
             </ul>
-
         );
     }
 }
@@ -72,13 +69,11 @@ export class DynamicSearchInput extends React.Component {
     _handleItemSelect(text, e) {
         this.setState({ value: text });
         this.dd.refs.inner.toggleOpen(false);
-        if(this.props.dynamic){
-            var result = {
-                alias: this.props.options.alias,
-                value: text
-            };
-            this.props.onChange([result]);
-        }
+        var result = {
+            alias: this.props.options.alias,
+            value: text
+        };
+        this.props.onChange([result]);
 
     }
 
@@ -113,7 +108,6 @@ export class DynamicSearchInput extends React.Component {
     }
 
     _handleChange(e) {
-        e.preventDefault();
         this.setState({
             searchString: e.target.value,
             value: e.target.value

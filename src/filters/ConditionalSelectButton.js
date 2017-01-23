@@ -14,19 +14,17 @@ export class ConditionalSelectButton extends BaseFilter {
             value: text
         });
 
-        if(this.props.dynamic){
-            var result = [
-                {
-                    alias: this.props.options.aliases[0],
-                    value: text
-                },
-                {
-                    alias: this.props.options.aliases[1],
-                    value: "All"
-                }
-            ];
-            this.props.onChange(result);
-        }
+        var result = [
+            {
+                alias: this.props.options.aliases[0],
+                value: text
+            },
+            {
+                alias: this.props.options.aliases[1],
+                value: "All"
+            }
+        ];
+        this.props.onChange(result);
         this.refs.secondary.setState({value: "All"});
     }
 
@@ -58,7 +56,7 @@ export class ConditionalSelectButton extends BaseFilter {
             default: this.props.options.defaults[1]
         };
         return (
-            <div className={this.props.options.filter_style}>
+            <div>
             <DropdownButton
                 id={this.props.id}
                 ref="primary"
@@ -67,7 +65,6 @@ export class ConditionalSelectButton extends BaseFilter {
             </DropdownButton>
             <SelectButton ref="secondary"
                 onChange={this.props.onChange}
-                dynamic={this.props.dynamic}
                 options={secondary}  />
             </div>
         );

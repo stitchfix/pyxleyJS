@@ -11,14 +11,11 @@ export class SliderInput extends BaseFilter {
         var slider = ReactDOM.findDOMNode(this);
         this.setState({value: slider.value});
 
-        if(this.props.dynamic){
-            var result = {
-                alias: this.props.options.alias,
-                value: slider.value
-            };
-            this.props.onChange([result]);
-
-        }
+        var result = {
+            alias: this.props.options.alias,
+            value: slider.value
+        };
+        this.props.onChange([result]);
     }
 
     render() {
