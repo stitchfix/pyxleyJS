@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import { Button } from 'antd';
 import BaseFilter from './BaseFilter';
 
 export class DownloadButton extends BaseFilter {
@@ -9,13 +9,21 @@ export class DownloadButton extends BaseFilter {
 
     _onClick() {
         var params = this.props.onChange();
+        
         var url = this.props.options.url.concat("?", $.param(params));
         window.location.href = url;
     }
 
     render() {
+        let props = {
+            onClick: this._onClick.bind(this),
+            icon: "download",
+            id: this.props.id
+        }
         return (
-            <Button onClick={this._onClick.bind(this)}>{this.props.options.label}</Button>
+            <Button { ...props }>
+                {this.props.options.label}
+            </Button>
         );
     }
 }
