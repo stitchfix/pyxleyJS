@@ -15,6 +15,12 @@ LayoutFactory.FilterChart = FilterChart;
 LayoutFactory.SimpleChart = SimpleChart;
 
 class Layout extends React.Component {
+    static get defaultProps() {
+        return {
+            layout_factory: LayoutFactory
+        };
+    }
+
     constructor(props) {
         super(props);
     }
@@ -23,7 +29,6 @@ class Layout extends React.Component {
         var Z = this.props.layout_factory(this.props.type);
         return (
             <Z
-                ref={"layout"}
                 id={this.props.id}
                 nav={this.props.nav}
                 filters={this.props.filters}
@@ -32,8 +37,6 @@ class Layout extends React.Component {
     }
 }
 
-Layout.defaultProps = {
-    layout_factory: LayoutFactory
-};
+
 
 export {Layout, LayoutFactory};

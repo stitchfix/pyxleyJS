@@ -1,24 +1,31 @@
 import React from 'react';
-import {Row, Grid} from 'react-bootstrap';
+import {Row, Col, Grid} from 'react-bootstrap';
 import {Filter} from '../filters/factory';
 import {Chart} from '../charts/factory';
+import {actions} from '../actions/index';
+import {utils} from './utils';
+import {fetchData} from '../utils/fetch';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+
+const getChartData = utils.getChartData
+const getFilterData = utils.getFilterData
+const updateFilterState = utils.updateFilterState
 
 class SimpleChart extends React.Component {
     constructor(props) {
         super(props);
+
     }
 
     _gatherParams(input) {
         var params = {};
 
-        for(var i = 0; i < this.props.filters.length; i++){
-            let fidx = 'filter_'.concat(i);
-            let vals = this.refs[fidx].refs.filter.getCurrentState();
-
-            for(var key in vals){
-                params[key] = vals[key];
-            }
+        let _state = this.context.store.getState()
+        for(let key in _state.filters) {
+            params[key] = _state.filters[key].value
         }
+
         if(input){
             for(var i = 0; i < input.length; i++){
                 params[input[i].alias] = input[i].value;
@@ -27,21 +34,36 @@ class SimpleChart extends React.Component {
         return params;
     }
 
+    _getChartData(params) {
+        let {dispatch} = this.props;
+        getChartData(params, dispatch, this.props.charts)
+
+    }
+
+    _getFilterData(params) {
+        let {dispatch} = this.props;
+        getFilterData(params, dispatch, this.props.filters)
+    }
+
+
+    _updateFilterState(input) {
+        let {dispatch} = this.props;
+        updateFilterState(input, dispatch)
+
+    }
+
     _handleClick(input) {
         // update the charts
         var params = this._gatherParams(input);
-        for(var i = 0; i < this.props.charts.length; i++){
-            this.refs['chart_'.concat(i)].update(params);
-        }
+        this._updateFilterState(input)
+        this._getFilterData(params)
+        this._getChartData(params)
 
+    }
 
-        for(var i = 0; i < this.props.filters.length; i++){
-            let fidx = 'filter_'.concat(i)
-            if(typeof this.refs[fidx].refs.filter.update === 'function') {
-                this.refs[fidx].refs.filter.update(params);
-            }
-        }
-        return params;
+    componentDidMount(){
+        this._getFilterData({})
+        this._getChartData({})
     }
 
     get_filters(prop_filters, group_name) {
@@ -49,13 +71,18 @@ class SimpleChart extends React.Component {
         if (prop_filters.length > 0) {
             filters = prop_filters.map(function(x, index){
                 return (
+                    <div
+                        key={'div_filter_'.concat(index)}
+                        className={group_name}>
+                    {x.label ? <h2>{x.label}</h2> : null}
                     <Filter
-                        key={'filter_'.concat(index, '_', group_name)}
                         ref={'filter_'.concat(index)}
                         id={'filter_'.concat(index)}
                         onChange={this._handleClick.bind(this)}
                         type={x.type}
                         options={x.options}/>
+                    <br/>
+                    </div>
                 );
             }.bind(this));
         }
@@ -83,28 +110,30 @@ class SimpleChart extends React.Component {
 
         let filters = [];
         for( let _filter in this.props.filters) {
-            let _filters = this.get_filters(this.props.filters[_filter], _filter)
-            filters.push(<div className={_filter}>{_filters}</div>);
+            filters.push(this.get_filters(
+                this.props.filters[_filter], _filter
+            ));
         }
 
         let charts = this.get_charts(this.props.charts);
 
         return (
+            <Grid>
 
-                <Grid>
-                <Row>
+                <Col xs={6} md={2}>
                     {filters}
-                </Row>
+                </Col>
 
-                <Row>
-                    {charts}
-                </Row>
-                </Grid>
-
+                <Col xs={12} md={10}>
+                {charts}
+                </Col>
+            </Grid>
             );
     }
 
 }
-
-
+SimpleChart.contextTypes = {
+  store: PropTypes.object.isRequired
+};
+SimpleChart = connect()(SimpleChart);
 export {SimpleChart};
