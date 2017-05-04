@@ -4,6 +4,9 @@ import {NVD3Chart} from './nvd3/base.js';
 import {Table} from './datatables/base.js';
 import {Datamaps} from './datamaps/base.js';
 import {PlotlyAPI} from './plotly/base.js';
+import {AntTable} from './antdesign/base.js';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 var ChartFactory = function(type) {
 
@@ -16,32 +19,53 @@ var ChartFactory = function(type) {
 
 
 ChartFactory.MetricsGraphics = MetricsGraphics;
-ChartFactory.Table = Table;
-ChartFactory.NVD3Chart = NVD3Chart;
+// ChartFactory.Table = Table;
+// ChartFactory.NVD3Chart = NVD3Chart;
 ChartFactory.Datamaps = Datamaps;
-ChartFactory.PlotlyAPI = PlotlyAPI;
+// ChartFactory.PlotlyAPI = PlotlyAPI;
+ChartFactory.AntTable = AntTable;
 
 class Chart extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    update(params) {
-        this.refs.chart._update(params);
-    }
-
     render() {
         var Z = this.props.factory(this.props.type);
         return (
-            <Z ref={"chart"} options={this.props.options} />
+            <Z
+                id={this.props.id}
+                data={this.props.data}
+                options={this.props.options} />
         );
     }
 }
 Chart.defaultProps = {
-    type: React.PropTypes.string,
+    type: PropTypes.string,
     factory: ChartFactory,
-    options: React.PropTypes.object
+    options: PropTypes.object
+
 };
 
+
+function mapChartStateToProps(state, ownProps) {
+
+    let newvalue = {result: []}
+    let id = ownProps.id
+
+    if( id in state.charts){
+
+        if ("data" in state.charts[id]) {
+            newvalue = state.charts[id].data
+        }
+    }
+
+    return {
+        data: newvalue
+    };
+}
+
+
+Chart = connect(mapChartStateToProps)(Chart);
 export {Chart};
 export {ChartFactory};

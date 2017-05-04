@@ -1,6 +1,20 @@
 import React from 'react';
 
-export class Datamaps extends React.Component {
+const makeMap = (result) => ({
+    scope: 'usa',
+    fills: result.fills,
+    data: result.data,
+    popupOnHover: true,
+    geographyConfig: {
+      highlightBorderColor: '#bada55',
+      popupTemplate: function(geography) {
+        return '<div class="hoverinfo">' + geography.properties.name
+      },
+      highlightBorderWidth: 3
+    }
+})
+
+class Datamaps extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -8,38 +22,42 @@ export class Datamaps extends React.Component {
         };
     }
 
-    componentDidMount() {
-        this._initialize(this.props.options.params);
+    componentWillReceiveProps(nextProps) {
+        if(this.state.chart === null) {
+            if( "data" in nextProps.data ){
+                this._initialize(nextProps.data)
+            }
+        } else {
+            this._update(nextProps.data)
+        }
     }
 
-    _initialize(params) {
-        var url = this.props.options.url.concat("?", $.param(params));
-        $.get(url,
-            function(result){
-                this.state.chart = new Datamap({
-                    element: document.getElementById(this.props.options.chartid),
-                    scope: 'usa',
-                    fills: result.fills,
-                    data: result.data
-                });
-        }.bind(this))
+    _initialize(data) {
+        let mapObject = this.props.mapFunc(data)
+        mapObject.element = document.getElementById(this.props.id)
+
+        this.setState({
+            chart: new Datamap(mapObject)
+        })
     }
 
-    _update(params){
-        var url = this.props.options.url.concat("?", $.param(params))
-        $.get(url,
-            function(result){
-                this.state.chart.updateChoropleth(result.data);
-        }.bind(this));
+
+    _update(data){
+        this.state.chart.updateChoropleth(data.data);
     }
 
     render() {
         return (
             <div
-                id={this.props.options.chartid}
+                id={this.props.id}
                 className="pyDataMap">
             </div>
         );
     }
 
 }
+
+Datamaps.defaultProps = {
+    mapFunc: makeMap
+}
+export {Datamaps};
