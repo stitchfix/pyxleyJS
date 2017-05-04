@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
     entry: './src/index.js',
@@ -8,6 +9,12 @@ module.exports = {
         library: 'pxyley',
         libraryTarget: 'umd'
     },
+    // resolve: {
+    //     alias: {
+    //         antd: path.resolve('./node_modules/antd')
+    //     }
+    // },
+
     module: {
         loaders: [
             {
@@ -15,7 +22,13 @@ module.exports = {
                 loader: 'babel',
                 exclude: /(node_modules|bower_components)/,
                 query: {
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react'],
+                    plugins: [ "transform-object-rest-spread",
+                        ["import", {
+                                "libraryName": "antd",
+                                "style": "css"
+                            }]
+                        ]
                 }
             },
             {
@@ -76,7 +89,22 @@ module.exports = {
             commonjs: 'react-dom',
             amd: 'react-dom'
           }
-        }
+      },
+      {
+          "antd": "antd"
+      },
+      {
+         "react-bootstrap": "react-bootstrap"
+     },
+     {
+         "react-redux": "react-redux"
+     },
+     {
+         "react-select": "react-select"
+     },
+     {
+         "redux": "redux"
+     }
     ],
     plugins: [
         new webpack.ProvidePlugin({
