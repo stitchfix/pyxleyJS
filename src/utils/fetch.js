@@ -3,8 +3,8 @@ import {stringify} from 'query-string';
 
 const FETCH_INIT = {
     headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
-    redirect: 'manual'
+    redirect: 'manual',
+    credentials: 'include'
 }
 
 export const fetchData = (
