@@ -7,13 +7,13 @@ const receiveFilterData = actions.receiveFilterData;
 const receiveFilterDataError = actions.receiveFilterDataError;
 const selectFilterOption = actions.selectFilterOption;
 
-function getChartData(params, dispatch, charts, prefix) {
+function getChartData(rootPath, params, dispatch, charts, prefix) {
 
     for(var i = 0; i < charts.length; i++){
 
         let id = prefix.concat(i)
         fetchData(
-            charts[i].options.url,
+            rootPath.concat(charts[i].options.url),
             params,
             json => {dispatch(receiveChartData(id,json))},
             () => {dispatch(receiveChartDataError())}
@@ -21,7 +21,7 @@ function getChartData(params, dispatch, charts, prefix) {
     }
 }
 
-function getFilterData(params, dispatch, filters) {
+function getFilterData(rootPath, params, dispatch, filters) {
 
     for (let _filter in filters){
 
@@ -30,7 +30,7 @@ function getFilterData(params, dispatch, filters) {
             if (("url" in f.options) && (f.options.alias !== undefined)){
 
                 fetchData(
-                    f.options.url,
+                    rootPath.concat(f.options.url),
                     params,
                     json => {
                         dispatch(

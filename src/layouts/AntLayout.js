@@ -1,4 +1,4 @@
-import {Layout, Menu} from 'antd';
+import {Layout, Menu, Row} from 'antd';
 import React from 'react';
 const {Header} = Layout;
 
@@ -16,6 +16,8 @@ class AntHeader extends React.Component {
     }
 
     render() {
+        let selected = ""
+        let selected_path = window.location.pathname;
         let links = this.props.navlinks.map(function(x, index){
             if(x.path !== '/'){
                 let path = x.path
@@ -23,13 +25,19 @@ class AntHeader extends React.Component {
                     path = path.concat("#", x.query)
                 }
                 let _key="navlink_".concat(index);
+                if(path == selected_path){
+                    selected = _key;
+                }
                 let link = (<a href={path}><span>{x.label}</span></a>);
                 return (
                     <Menu.Item key={_key}>{link}</Menu.Item>
                 );
             }
+            else {
+                selected = "navlink_0";
+            }
         });
-
+        
         let logo = null;
         if(this.props.logo !== null){
             logo = (
@@ -40,6 +48,7 @@ class AntHeader extends React.Component {
         }
         return (
             <Header className="header">
+                <Row className="header-row">
                 <div className="logo">
                     {logo}
                 </div>
@@ -47,9 +56,11 @@ class AntHeader extends React.Component {
                     mode="horizontal"
                     className="pyxley-ant-header"
                     defaultSelectedKeys={['0']}
-                    style={{lineHeight: '64px'}}>
+                    selectedKeys={[selected]}>
+
                     {links}
                 </Menu>
+                </Row>
             </Header>
         )
     }
