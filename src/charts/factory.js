@@ -22,7 +22,7 @@ ChartFactory.MetricsGraphics = MetricsGraphics;
 // ChartFactory.Table = Table;
 // ChartFactory.NVD3Chart = NVD3Chart;
 ChartFactory.Datamaps = Datamaps;
-// ChartFactory.PlotlyAPI = PlotlyAPI;
+ChartFactory.PlotlyAPI = PlotlyAPI;
 ChartFactory.AntTable = AntTable;
 
 class Chart extends React.Component {

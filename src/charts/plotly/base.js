@@ -6,25 +6,21 @@ export class PlotlyAPI extends React.Component {
         super(props);
     }
 
-    _update(params) {
-        var url = this.props.options.url.concat("?",
-            $.param(params));
-        $.get(url,
-            function(result) {
-                Plotly.newPlot(
-                    this.props.options.chartid,
-                    result.data,
-                    result.layout,
-                    result.config
-                )
-            }.bind(this)
-        );
+    componentWillReceiveProps(nextProps) {
+        let {data} = nextProps;
+        this._update(data);
     }
 
-    componentDidMount() {
-        this._update(this.props.options.params);
+    _update(result) {
+        Plotly.newPlot(
+            this.props.options.chartid,
+            result.data,
+            result.layout,
+            result.config
+        )
 
     }
+
 
     render() {
         return (

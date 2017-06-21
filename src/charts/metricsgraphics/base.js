@@ -15,7 +15,7 @@ class MetricsGraphics extends React.Component {
     }
 
     _update(data) {
-
+        console.log(data.result)
         if(data.result.length > 0){
             var options = this.props.options.params;
 
