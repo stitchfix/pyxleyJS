@@ -17,6 +17,10 @@ class AntSelect extends React.Component {
         this.props.onChange([result]);
     }
 
+    onKeyDown() {
+        console.log("keydown")
+    }
+
     render() {
         let options = this.props.options.items.map( (item, index) => {
             return (
@@ -35,16 +39,21 @@ class AntSelect extends React.Component {
             <Select
                 defaultValue={label}
                 style={style}
-                onChange={this._handleClick.bind(this)}>
+                onChange={this._handleClick.bind(this)}
+                onKeyDown={this.onKeyDown}>
                 {options}
             </Select>
         );
     }
 }
 
+
 class AntMultiSelect extends React.Component {
     constructor(props){
         super(props);
+    }
+
+    onKeyDown() {
     }
 
     _handleClick(value) {
@@ -80,12 +89,13 @@ class AntMultiSelect extends React.Component {
             style: this.props.options.options.style,
             onChange: this._handleClick.bind(this),
             placeholder: this.props.options.options.placeholder,
-            notFoundContent: 'Not Found'
+            notFoundContent: 'Not Found',
+            onKeyDown: this.onKeyDown
         }
         if( this.props.value !== undefined &&
             this.props.value !== "" &&
             this.props.value !== null) {
-            props.value = this.props.value;
+            props.value = this.props.value.split("|");
         }
 
         if(this.props.options.options.multi){
@@ -94,7 +104,7 @@ class AntMultiSelect extends React.Component {
             props.showSearch = true;
 
         }
-        
+
         return (
             <Select {...props}>
                 {options}
