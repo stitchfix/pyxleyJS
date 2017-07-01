@@ -65,6 +65,10 @@ class AntTable extends React.Component {
                 props[key] = this.props.data.options[key]
             }
         }
+        
+        if ("width" in this.props.data ){
+            props["scroll"]["x"] = this.props.data.width
+        }
         if (props.useRowSelection){
             props.rowSelection = rowSelection;
         }

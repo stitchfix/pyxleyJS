@@ -7,7 +7,8 @@ class AntHeader extends React.Component {
     static get defaultProps() {
         return {
             navlinks: [],
-            logo: null
+            logo: null,
+            logo_href: "/"
         };
     }
 
@@ -37,11 +38,11 @@ class AntHeader extends React.Component {
                 selected = "navlink_0";
             }
         });
-        
+
         let logo = null;
         if(this.props.logo !== null){
             logo = (
-                <a href="/">
+                <a href={this.props.logo_href}>
                     <img id="logo_img" src={this.props.logo} />
                 </a>
             );

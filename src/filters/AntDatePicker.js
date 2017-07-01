@@ -3,7 +3,7 @@ import { DatePicker } from 'antd';
 import moment from 'moment';
 import { fetchData } from '../utils/fetch'
 
-const { RangePicker } = DatePicker;
+const { RangePicker, MonthPicker } = DatePicker;
 
 const parseValue = (value) => {
     let tokens = value.split("|")
@@ -99,9 +99,73 @@ class AntDatePicker extends React.Component {
         props.ranges = parseRanges(this.state.ranges)
 
         return (
+            <div className="pyxley-range-picker">
             <RangePicker showTime {...props}/>
+            </div>
         );
     }
 }
 
-export { AntDatePicker }
+class AntMonthRangePicker extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            value: [],
+            start_date: moment(),
+            end_date: moment()
+        }
+    }
+
+    _handleClickStart(value) {
+        this.setState({
+            start_date: value
+        })
+        if( value > this.state.end_date){
+            this.setState({
+                end_date: value
+            })
+        }
+
+    }
+
+    _handleClickEnd(value) {
+        let start_date = this.state.start_date
+        let valarr = [start_date, value]
+        if( value < start_date){
+            valarr[0] = value
+        }
+        this.setState({
+            end_date: value,
+            start_date: value
+        })
+
+        let _value = convertToString(valarr);
+
+        var result = {
+            alias: this.props.options.alias,
+            value: _value,
+            changed: this.props.value !== _value
+        }
+        this.props.onChange([result]);
+    }
+
+    render() {
+        let propsStart = {...this.props.options.options}
+        let propsEnd = {...this.props.options.options}
+
+        // event handlers
+        propsStart.onChange = this._handleClickStart.bind(this)
+        propsEnd.onChange = this._handleClickEnd.bind(this)
+
+
+        return (
+            <div className={"pyxley-month-range"}>
+            <MonthPicker {...propsStart} />
+            <p> to </p>
+            <MonthPicker {...propsEnd} />
+            </div>
+        );
+    }
+}
+
+export { AntDatePicker, AntMonthRangePicker }

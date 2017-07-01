@@ -10,7 +10,8 @@ import {CheckboxGroup} from './CheckboxGroup';
 import {ReactSelect} from './ReactSelect';
 import {InputDecimal} from './SimpleInput';
 import {AntSelect, AntMultiSelect} from './AntSelect';
-import {AntDatePicker} from './AntDatePicker'
+import {AntDatePicker, AntMonthRangePicker} from './AntDatePicker'
+import {AntCheck} from './AntCheckbox'
 
 var FilterFactory = function(type) {
     if (typeof FilterFactory[type] != 'function'){
@@ -30,7 +31,9 @@ FilterFactory.DownloadButton = DownloadButton;
 FilterFactory.ReactSelect = AntMultiSelect;
 FilterFactory.MultiSelect = AntMultiSelect;
 FilterFactory.AntDatePicker = AntDatePicker;
+FilterFactory.AntMonthRangePicker = AntMonthRangePicker;
 FilterFactory.SimpleInput = InputDecimal;
+FilterFactory.AntCheck = AntCheck;
 
 class Filter extends React.Component {
     constructor(props) {

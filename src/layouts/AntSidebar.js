@@ -42,22 +42,30 @@ class AntSidebar extends React.Component {
                 let _sub = (
                     <SubMenu
                         key={prefix.concat(".submenu.",group_number)}
+                        onKeyDown={this.onKeyDown}
                         title={filters[key].title}>
                         {filters[key].data}
                     </SubMenu>
                 );
                 groups.push(_sub);
             } else {
+
                 let _sub = (
-                    <div className="pyxley-menu-single">
-                        {filters[key].data}
-                    </div>
+                    <Menu.Item onKeyDown={this.onKeyDown}>
+                        <div className="pyxley-menu-single">
+                            {filters[key].data}
+                        </div>
+                    </Menu.Item>
                 )
                 groups.push(_sub);
             }
             group_number = group_number + 1;
         }
         return groups;
+    }
+
+    onKeyDown() {
+        console.log("fudge")
     }
 
     render() {
@@ -67,6 +75,7 @@ class AntSidebar extends React.Component {
 
             <Menu
                 defaultOpenKeys={this.props.defaultOpenKeys}
+                onKeyDown={this.onKeyDown}
                 selectedKeys={[this.state.current]}
                 style={{height: '100%'}}
                 mode="inline">
