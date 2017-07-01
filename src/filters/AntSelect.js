@@ -18,7 +18,6 @@ class AntSelect extends React.Component {
     }
 
     onKeyDown() {
-        console.log("keydown")
     }
 
     render() {
