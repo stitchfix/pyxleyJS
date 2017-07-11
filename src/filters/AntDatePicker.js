@@ -117,15 +117,25 @@ class AntMonthRangePicker extends React.Component {
     }
 
     _handleClickStart(value) {
-        this.setState({
-            start_date: value
-        })
-        if( value > this.state.end_date){
-            this.setState({
-                end_date: value
-            })
-        }
 
+        let end_date = this.state.end_date
+        let valarr = [value, end_date]
+        if( value > end_date){
+            valarr[1] = value
+        }
+        this.setState({
+            start_date: valarr[0],
+            end_date: valarr[1]
+        })
+
+        let _value = convertToString(valarr);
+
+        var result = {
+            alias: this.props.options.alias,
+            value: _value,
+            changed: this.props.value !== _value
+        }
+        this.props.onChange([result]);
     }
 
     _handleClickEnd(value) {
@@ -135,8 +145,8 @@ class AntMonthRangePicker extends React.Component {
             valarr[0] = value
         }
         this.setState({
-            end_date: value,
-            start_date: value
+            end_date: valarr[1],
+            start_date: valarr[0]
         })
 
         let _value = convertToString(valarr);

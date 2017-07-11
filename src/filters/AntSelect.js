@@ -20,6 +20,18 @@ class AntSelect extends React.Component {
     onKeyDown() {
     }
 
+    componentDidMount() {
+        if("options" in this.props){
+            if("items" in this.props.options){
+                let first_item = this.props.options.items[0];
+                if(first_item.value !== ""){
+                    this._handleClick(first_item)
+                }
+
+            }
+        }
+    }
+
     render() {
         let options = this.props.options.items.map( (item, index) => {
             return (
@@ -57,12 +69,24 @@ class AntMultiSelect extends React.Component {
 
     _handleClick(value) {
         let _value = "";
-        if(this.props.options.options.multi){
 
+        if(this.props.options.options.multi){
+            let skipAll = this.props.options.options.skipAll || false;
             let delimiter = this.props.options.options.delimiter;
-            _value = value[0];
-            for(let i = 1; i < value.length; i++){
-                _value = _value.concat(delimiter, value[i])
+            _value = "";
+            if(value[value.length - 1] !== "All"){
+                for(let i = 0; i < value.length; i++){
+                    if(value[i] === "All" && skipAll){
+                        continue
+                    }
+                    if( i < (value.length - 1)){
+                        _value = _value.concat(value[i], delimiter)
+                    } else {
+                        _value = _value.concat(value[i])
+                    }
+                }
+            } else {
+                _value = "All"
             }
         } else {
             _value = value;
@@ -74,6 +98,37 @@ class AntMultiSelect extends React.Component {
             changed: this.props.value !== _value
         };
         this.props.onChange([result]);
+    }
+
+    parseItems(props, value){
+        if(props.items.length > 0){
+            let useValues = []
+            let listItems = props.items.map(x => x.value)
+            if(value !== undefined && value !== null && props.items.length > 0){
+                let setValues = new Set(props.value.split("|"))
+                useValues = listItems.filter(x => setValues.has(x))
+            }
+
+            if( useValues.length === 0 ){
+                if(props.options.options.multi){
+                    this._handleClick([listItems[0]])
+                } else {
+                    this._handleClick(listItems[0])
+                }
+            }
+        }
+    }
+
+    componentDidMount() {
+        if("items" in this.props && this.props.options.options.prepopulate){
+            this.parseItems(this.props, this.props.value)
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if("items" in nextProps && this.props.options.options.prepopulate){
+            this.parseItems(nextProps, nextProps.value)
+        }
     }
 
     render() {
@@ -96,6 +151,9 @@ class AntMultiSelect extends React.Component {
             this.props.value !== null) {
             props.value = this.props.value.split("|");
         }
+        if( "defaultValue" in this.props.options.options ){
+            props.defaultValue = this.props.options.options.defaultValue
+        }
 
         if(this.props.options.options.multi){
             props.mode = "multiple"
@@ -112,5 +170,10 @@ class AntMultiSelect extends React.Component {
     }
 }
 
+AntMultiSelect.defaultProps = {
+    options: {
+        prepopulate: false
+    }
+}
 
 export {AntSelect, AntMultiSelect};
