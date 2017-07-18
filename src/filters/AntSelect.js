@@ -20,18 +20,6 @@ class AntSelect extends React.Component {
     onKeyDown() {
     }
 
-    componentDidMount() {
-        if("options" in this.props){
-            if("items" in this.props.options){
-                let first_item = this.props.options.items[0];
-                if(first_item.value !== ""){
-                    this._handleClick(first_item)
-                }
-
-            }
-        }
-    }
-
     render() {
         let options = this.props.options.items.map( (item, index) => {
             return (
@@ -151,10 +139,15 @@ class AntMultiSelect extends React.Component {
             this.props.value !== null) {
             props.value = this.props.value.split("|");
         }
+
+        let title = null;
         if( "defaultValue" in this.props.options.options ){
             props.defaultValue = this.props.options.options.defaultValue
+            title = (<p>{props.placeholder}</p>);
         }
-
+        if(this.props.options.options.prepopulate){
+            title = (<p>{props.placeholder}</p>);
+        }
         if(this.props.options.options.multi){
             props.mode = "multiple"
         } else {
@@ -162,10 +155,14 @@ class AntMultiSelect extends React.Component {
 
         }
 
+
         return (
+            <div className="pyxley-ant-select-multi">
+            {title}
             <Select {...props}>
                 {options}
             </Select>
+            </div>
         );
     }
 }

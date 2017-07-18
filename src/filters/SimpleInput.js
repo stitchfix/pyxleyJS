@@ -17,16 +17,20 @@ class InputDecimal extends React.Component {
     }
 
     render() {
-
+        let props = {
+            id: this.props.id,
+            min: this.props.options.minValue || 0,
+            max: this.props.options.maxValue || 100,
+            step: this.props.options.step || 0.1,
+            onChange: this._handleChange.bind(this)
+        }
+        if("defaultValue" in this.props.options){
+            props["defaultValue"] = this.props.options.defaultValue
+        }
         return (
             <div>
             {this.props.options.placeholder}
-            <InputNumber
-                id={this.props.id}
-                min={1}
-                max={100}
-                step={0.1}
-                onChange={this._handleChange.bind(this)}/>
+            <InputNumber {...props}/>
             </div>
         );
     }

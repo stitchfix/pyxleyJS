@@ -16,12 +16,17 @@ const rowSelection = {
   },
 };
 
-const formatColumnGroup = (group) => {
+const formatColumnGroup = (group, sorters) => {
+
     let cols = group.columns.map( c => {
         let props = {}
         for (let k in c) {
             props[k] = c[k]
         }
+        if (c["dataIndex"] in sorters){
+            props["sorter"] = sorters[c["dataIndex"]]
+        }
+
         return (
             <Column { ...props } />
         );
@@ -37,10 +42,10 @@ const formatColumnGroup = (group) => {
     return cols;
 };
 
-const makeHeader = (columns) => {
+const makeHeader = (columns, sorters) => {
     if( Object.prototype.toString.call(columns) === '[object Array]'){
         return columns.map( (c) => {
-            return formatColumnGroup(c);
+            return formatColumnGroup(c, sorters);
         });
     }
     return null;
@@ -52,8 +57,11 @@ class AntTable extends React.Component {
         super(props);
     }
 
+
+
     drawTable() {
-        let columns = makeHeader(this.props.data.header)
+        let columns = makeHeader(this.props.data.header,
+            this.props.options.sorter || {})
         if (columns === null) {
             return null;
         }
@@ -65,7 +73,7 @@ class AntTable extends React.Component {
                 props[key] = this.props.data.options[key]
             }
         }
-        
+
         if ("width" in this.props.data ){
             props["scroll"]["x"] = this.props.data.width
         }
