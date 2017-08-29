@@ -51,7 +51,7 @@ function updateLocation(alias, value){
     }
 
     // split on ?
-    let tokens = url.split("&")
+    let tokens = url.replace(" & ", " + ").split("&")
 
     let query = ""
     let notFound = true
@@ -60,12 +60,14 @@ function updateLocation(alias, value){
         if( tokens[i] !== "" ){
             // split on =
             let pairs = tokens[i].split("=")
-            if(pairs[0] === alias){
-                tokens[i] = pairs[0].concat("=", value)
-                notFound = false
+            if( pairs.length > 1){
+                if(pairs[0] === alias){
+                    tokens[i] = pairs[0].concat("=", value)
+                    notFound = false
+                }
+                prefix = query === "" ? "" : "&"
+                query = query.concat(prefix, tokens[i])
             }
-            prefix = query === "" ? "" : "&"
-            query = query.concat(prefix, tokens[i])
         }
 
     }

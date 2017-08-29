@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/stitchfix/pyxleyJS",
   "dependencies": {
-    "antd": "^2.9.3",
+    "antd": "^2.10.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",

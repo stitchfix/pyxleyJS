@@ -142,7 +142,7 @@ class AntMultiSelect extends React.Component {
 
         let title = null;
         if( "defaultValue" in this.props.options.options ){
-            props.defaultValue = this.props.options.options.defaultValue
+            props.defaultValue = this.props.options.options.defaultValue.split("|")
             title = (<p>{props.placeholder}</p>);
         }
         if(this.props.options.options.prepopulate){
