@@ -13,6 +13,16 @@ const select_filter = (state = {}, action) => {
   }
 }
 
+const removeKeyFromState = (state, removeKey ) => {
+    let newState = {}
+    for( let key in state ) {
+        if( removeKey !== key ) {
+            newState[key] = state[key]
+        }
+    }
+    return newState
+}
+
 const filters = (state = {}, action) => {
     switch(action.type) {
         case 'SELECT_FILTER_OPTION':
@@ -20,6 +30,8 @@ const filters = (state = {}, action) => {
                 ...state,
                 [action.index]: select_filter(state[action.index], action)
             }
+        case 'REMOVE_FILTER_OPTION':
+            return removeKeyFromState(state, action.index)
         default:
             return state
     }

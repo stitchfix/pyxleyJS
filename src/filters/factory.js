@@ -8,9 +8,9 @@ import {SliderInput} from './SliderInput';
 import {DynamicSearchInput} from './DynamicSearchInput';
 import {CheckboxGroup} from './CheckboxGroup';
 import {ReactSelect} from './ReactSelect';
-import {InputDecimal} from './SimpleInput';
+import {InputDecimal, InputText} from './SimpleInput';
 import {AntSelect, AntMultiSelect} from './AntSelect';
-import {AntDatePicker, AntMonthRangePicker} from './AntDatePicker'
+import {AntDatePicker, AntMonthRangePicker, AntDateSelect} from './AntDatePicker'
 import {AntCheck} from './AntCheckbox'
 
 var FilterFactory = function(type) {
@@ -23,14 +23,13 @@ var FilterFactory = function(type) {
 
 FilterFactory.SliderInput = SliderInput;
 FilterFactory.SelectButton = AntSelect;
-// FilterFactory.ConditionalSelectButton = ConditionalSelectButton;
-// FilterFactory.ApiButton = ApiButton;
+
 FilterFactory.DownloadButton = DownloadButton;
-// FilterFactory.DynamicSearch = DynamicSearchInput;
-// FilterFactory.CheckboxGroup = CheckboxGroup;
+FilterFactory.InputText = InputText;
 FilterFactory.ReactSelect = AntMultiSelect;
 FilterFactory.MultiSelect = AntMultiSelect;
 FilterFactory.AntDatePicker = AntDatePicker;
+FilterFactory.AntDateSelect = AntDateSelect;
 FilterFactory.AntMonthRangePicker = AntMonthRangePicker;
 FilterFactory.SimpleInput = InputDecimal;
 FilterFactory.AntCheck = AntCheck;

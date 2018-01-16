@@ -26,7 +26,6 @@ class AntSelect extends React.Component {
                 <Option key={index} value={item}>{item}</Option>
             );
         })
-        let label = this.props.value || this.props.options.label;
 
         let style = {
             width: '75%',
@@ -34,12 +33,26 @@ class AntSelect extends React.Component {
             paddingBottom: '7px',
             paddingTop: '7px'
         }
+        let props = {
+            style: style,
+            onChange: this._handleClick.bind(this),
+            onKeyDown: this.onKeyDown
+        }
+        if( 'mode' in this.props.options ){
+            props.mode = this.props.options.mode
+        }
+        if( 'extraProps' in this.props.options ){
+            for(let key in this.props.options.extraProps) {
+                props[key] = this.props.options.extraProps[key]
+            }
+        }
+        if( this.props.value !== null &&
+            this.props.value !== undefined &&
+            this.props.value !== "") {
+                props.value = this.props.value
+        }
         return (
-            <Select
-                defaultValue={label}
-                style={style}
-                onChange={this._handleClick.bind(this)}
-                onKeyDown={this.onKeyDown}>
+            <Select {...props}>
                 {options}
             </Select>
         );
@@ -57,10 +70,10 @@ class AntMultiSelect extends React.Component {
 
     _handleClick(value) {
         let _value = "";
-
-        if(this.props.options.options.multi){
-            let skipAll = this.props.options.options.skipAll || false;
-            let delimiter = this.props.options.options.delimiter;
+        let { options } = this.props.options;
+        if(options.multi){
+            let skipAll = options.skipAll || false;
+            let delimiter = options.delimiter;
             _value = "";
             if(value[value.length - 1] !== "All"){
                 for(let i = 0; i < value.length; i++){
@@ -76,6 +89,8 @@ class AntMultiSelect extends React.Component {
             } else {
                 _value = "All"
             }
+        } else if ("allowUnknown" in options) {
+            _value = value[value.length - 1];
         } else {
             _value = value;
         }
@@ -137,6 +152,7 @@ class AntMultiSelect extends React.Component {
         if( this.props.value !== undefined &&
             this.props.value !== "" &&
             this.props.value !== null) {
+
             props.value = this.props.value.split("|");
         }
 
@@ -154,7 +170,15 @@ class AntMultiSelect extends React.Component {
             props.showSearch = true;
 
         }
+        if( "allowUnknown" in this.props.options.options ) {
+            props.mode = "tags"
+        }
 
+        if( 'extraProps' in this.props.options ){
+            for(let key in this.props.options.extraProps) {
+                props[key] = this.props.options.extraProps[key]
+            }
+        }
 
         return (
             <div className="pyxley-ant-select-multi">

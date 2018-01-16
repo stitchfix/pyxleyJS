@@ -27,5 +27,5 @@ export {SliderInput} from './filters/SliderInput';
 export {DynamicSearchInput} from './filters/DynamicSearchInput';
 export {CheckboxGroup} from './filters/CheckboxGroup';
 export {ReactSelect} from './filters/ReactSelect';
-export {fetchData} from './utils/fetch'
+export {fetchData, postData, deleteData} from './utils/fetch'
 export {utils} from './layouts/utils'

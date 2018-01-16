@@ -1,6 +1,7 @@
 
 import {
     selectFilterOption,
+    removeFilterOption,
     receiveFilterData,
     receiveFilterDataError
     } from './filters'
@@ -15,6 +16,7 @@ import {
 
 export const actions = {
     selectFilterOption: selectFilterOption,
+    removeFilterOption: removeFilterOption,
     receiveFilterData: receiveFilterData,
     receiveFilterDataError: receiveFilterDataError,
     receiveChartData: receiveChartData,

@@ -8,6 +8,13 @@ export const selectFilterOption = (index, value) => (
   }
 )
 
+export const REMOVE_FILTER_OPTION = 'REMOVE_FILTER_OPTION'
+export const removeFilterOption = (index) => (
+  {
+    type: REMOVE_FILTER_OPTION,
+    index
+  }
+)
 export const receiveFilterData = (index, data) => ({
     type: 'RECEIVE_PYXLEY_FILTER',
     index,

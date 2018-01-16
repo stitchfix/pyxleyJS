@@ -178,4 +178,43 @@ class AntMonthRangePicker extends React.Component {
     }
 }
 
-export { AntDatePicker, AntMonthRangePicker }
+class AntDateSelect extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    _onOk(value) {
+        let _value = value.format("YYYY-MM-DD")
+
+        var result = {
+            alias: this.props.options.alias,
+            value: _value,
+            changed: this.props.value !== _value
+        }
+
+        this.props.onChange([result]);
+    }
+
+    render () {
+        let props = {
+            className: "pyxley-date-select",
+            onChange: this._onOk.bind(this)
+        }
+        if ( "value" in this.props ) {
+            if( this.props.value !== null ){
+                props.value = moment(this.props.value, "YYYY-MM-DD")
+            }
+        }
+        if( "extraProps" in this.props.options ){
+            for(let key in this.props.options.extraProps ){
+                props[key] = this.props.options.extraProps[key]
+            }
+        }
+        return (
+            <DatePicker {...props}/>
+        );
+    }
+}
+
+
+export { AntDatePicker, AntMonthRangePicker, AntDateSelect }

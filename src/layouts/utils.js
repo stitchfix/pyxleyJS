@@ -1,11 +1,12 @@
 
 import {actions} from '../actions/index'
-import {fetchData} from '../utils/fetch'
+import {fetchData, postData} from '../utils/fetch'
 const receiveChartData = actions.receiveChartData;
 const receiveChartDataError = actions.receiveChartDataError;
 const receiveFilterData = actions.receiveFilterData;
 const receiveFilterDataError = actions.receiveFilterDataError;
 const selectFilterOption = actions.selectFilterOption;
+const removeFilterOption = actions.removeFilterOption;
 
 function getChartData(rootPath, params, dispatch, charts, prefix) {
 
@@ -89,6 +90,14 @@ function updateFilterState(input, dispatch) {
 
 }
 
+function removeFilters(input, dispatch) {
+    if(input.constructor === Array){
+        input.map( t => {
+            dispatch(removeFilterOption(t.alias))
+        })
+    }
+}
+
 function updateStateAndHash(input, dispatch) {
 
     if(input.constructor === Array){
@@ -103,6 +112,7 @@ function updateStateAndHash(input, dispatch) {
 const utils = {
     getChartData: getChartData,
     getFilterData: getFilterData,
+    removeFilters: removeFilters,
     updateFilterState: updateFilterState,
     updateStateAndHash: updateStateAndHash
 }
