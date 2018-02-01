@@ -63,18 +63,6 @@ module.exports = {
             "plotly\.js": "Plotly"
         },
         {
-            "datamaps": "Datamap"
-        },
-        {
-            "metrics-graphics": "MG"
-        },
-        {
-            "d3": "d3"
-        },
-        {
-            "nvd3": "nv"
-        },
-        {
             'react': {
                 root: 'React',
                 commonjs2: 'react',
@@ -93,14 +81,8 @@ module.exports = {
       {
           "antd": "antd"
       },
-      {
-         "react-bootstrap": "react-bootstrap"
-     },
      {
          "react-redux": "react-redux"
-     },
-     {
-         "react-select": "react-select"
      },
      {
          "redux": "redux"

@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {SelectButton} from './SelectButton';
-import {ConditionalSelectButton} from './ConditionalSelectButton';
-import {ApiButton} from './ApiButton';
+// import {SelectButton} from './SelectButton';
+// import {ConditionalSelectButton} from './ConditionalSelectButton';
+// import {ApiButton} from './ApiButton';
 import {DownloadButton} from './DownloadButton';
-import {SliderInput} from './SliderInput';
-import {DynamicSearchInput} from './DynamicSearchInput';
-import {CheckboxGroup} from './CheckboxGroup';
-import {ReactSelect} from './ReactSelect';
+// import {SliderInput} from './SliderInput';
+// import {DynamicSearchInput} from './DynamicSearchInput';
+// import {CheckboxGroup} from './CheckboxGroup';
+// import {ReactSelect} from './ReactSelect';
 import {InputDecimal, InputText} from './SimpleInput';
 import {AntSelect, AntMultiSelect} from './AntSelect';
 import {AntDatePicker, AntMonthRangePicker, AntDateSelect} from './AntDatePicker'
@@ -21,7 +21,7 @@ var FilterFactory = function(type) {
     return FilterFactory[type];
 };
 
-FilterFactory.SliderInput = SliderInput;
+// FilterFactory.SliderInput = SliderInput;
 FilterFactory.SelectButton = AntSelect;
 
 FilterFactory.DownloadButton = DownloadButton;

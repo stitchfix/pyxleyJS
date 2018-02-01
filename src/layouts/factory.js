@@ -1,7 +1,7 @@
 
 import React from 'react';
-import {FilterChart} from './FilterChart';
-import {SimpleChart} from './SimpleChart';
+// import {FilterChart} from './FilterChart';
+// import {SimpleChart} from './SimpleChart';
 
 var LayoutFactory = function(type) {
     if (typeof LayoutFactory[type] != 'function'){
@@ -11,8 +11,8 @@ var LayoutFactory = function(type) {
     return LayoutFactory[type];
 };
 
-LayoutFactory.FilterChart = FilterChart;
-LayoutFactory.SimpleChart = SimpleChart;
+// LayoutFactory.FilterChart = FilterChart;
+// LayoutFactory.SimpleChart = SimpleChart;
 
 class Layout extends React.Component {
     static get defaultProps() {

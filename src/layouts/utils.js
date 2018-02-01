@@ -47,6 +47,7 @@ function getFilterData(rootPath, params, dispatch, filters) {
 
 function updateLocation(alias, value){
     let url = document.location.hash;
+
     if(url.length > 1) {
         url = url.slice(1)
     }

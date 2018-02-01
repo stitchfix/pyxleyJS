@@ -78,14 +78,17 @@ class AntDatePicker extends React.Component {
     componentWillMount() {
         let value = this.props.value === null ? "": this.props.value
         this.setState({value: parseValue(value)})
-        this.getRanges(this.props.options.url)
+        if("url" in this.props.options){
+            this.getRanges(this.props.options.url)
+        }
     }
 
     render() {
         let props = {...this.props.options.options};
 
         props.onOk = this._onOk.bind(this);
-        props.onChange = this._handleClick.bind(this);
+        props.onChange = this._onOk.bind(this);
+        // props.onChange = this._handleClick.bind(this);
 
         if (this.props.value !== null) {
             props.value = parseValue(this.props.value)

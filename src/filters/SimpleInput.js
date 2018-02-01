@@ -1,6 +1,18 @@
 import React from 'react';
 import { InputNumber, Input } from 'antd';
 
+const twoDecimals = (x) => {
+    // x is a string, split on
+    let tokens = x.split('.')
+    if (tokens.length === 1){
+        return x + '.00'
+    }
+    if (tokens[1].length === 1) {
+        return x + '0'
+    }
+    return x
+}
+
 class InputDecimal extends React.Component {
     constructor(props) {
         super(props);
@@ -29,10 +41,14 @@ class InputDecimal extends React.Component {
             props["defaultValue"] = this.props.options.defaultValue
         }
         if("percent" in this.props.options) {
-            props["formatter"] = (value) => `${value}%`
+            props["formatter"] = (value) => {
+                return (twoDecimals(`${value}`) + '%');
+            }
         }
         if("price" in this.props.options){
-            props["formatter"] = (value) => `$ ${value}`
+            props["formatter"] = (value) => {
+                return twoDecimals(`$ ${value}`)
+            }
         }
         if("className" in this.props.options) {
             props["className"] = this.props.options.className
