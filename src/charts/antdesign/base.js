@@ -4,17 +4,6 @@ import React from 'react'
 
 const {Column, ColumnGroup} = Table;
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  onSelect: (record, selected, selectedRows) => {
-    console.log(record, selected, selectedRows);
-  },
-  onSelectAll: (selected, selectedRows, changeRows) => {
-    console.log(selected, selectedRows, changeRows);
-  },
-};
 
 const formatColumnGroup = (group, sorters) => {
 
@@ -42,6 +31,16 @@ const formatColumnGroup = (group, sorters) => {
     return cols;
 };
 
+
+const getHeaderWidth = (columns) => {
+    if( Object.prototype.toString.call(columns) === '[object Array]'){
+        return columns.map( (c) => {
+            return c.columns.map((d) => (d.width || 0)).reduce((a, b) => a + b, 0)
+        }).reduce((a, b) => a + b, 0);
+    }
+    return 0
+}
+
 const makeHeader = (columns, sorters) => {
     if( Object.prototype.toString.call(columns) === '[object Array]'){
         return columns.map( (c) => {
@@ -57,29 +56,35 @@ class AntTable extends React.Component {
         super(props);
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.drawTable(nextProps)
+    }
 
 
-    drawTable() {
-        let columns = makeHeader(this.props.data.header,
-            this.props.options.sorter || {})
+    drawTable(inProps) {
+        let columns = makeHeader(inProps.data.header,
+            inProps.options.sorter || {})
         if (columns === null) {
             return null;
         }
 
-        let props = this.props.options.options;
-        props.dataSource = this.props.data.data;
-        if ("options" in this.props.data) {
-            for(let key in this.props.data.options){
-                props[key] = this.props.data.options[key]
+        let props = inProps.options.options;
+        props.dataSource = inProps.data.data;
+        if ("options" in inProps.data) {
+            for(let key in inProps.data.options){
+                props[key] = inProps.data.options[key]
             }
         }
 
-        if ("width" in this.props.data ){
-            props["scroll"]["x"] = this.props.data.width
+        if ("width" in inProps.data ){
+            props["scroll"]["x"] = inProps.data.width
         }
-        if (props.useRowSelection){
-            props.rowSelection = rowSelection;
+        let headerWidth = getHeaderWidth(inProps.data.header)
+        if (headerWidth > 0) {
+            props["scroll"]["x"] = headerWidth
+
         }
+
         return (
             <Table { ...props }>
             {columns}
@@ -88,7 +93,7 @@ class AntTable extends React.Component {
     }
 
     render() {
-        let table = this.drawTable()
+        let table = this.drawTable(this.props)
 
         return (
             <div id={this.props.id}>
