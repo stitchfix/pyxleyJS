@@ -33,7 +33,6 @@
     "datatables": "^1.10.7",
     "file-loader": "^0.8.5",
     "image-loader": "0.0.1",
-    "jquery": "^2.2.0",
     "metrics-graphics": "^2.8.0",
     "node-libs-browser": "^0.5.2",
     "node-sass": "^3.4.2",
