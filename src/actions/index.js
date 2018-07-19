@@ -11,7 +11,9 @@ import {
     receiveLayouts,
     receiveLayoutsError,
     receiveNavBar,
-    receiveNavBarError
+    receiveNavBarError,
+    clearAllCharts,
+    removePyxleyChart
 } from './charts'
 
 export const actions = {
@@ -24,5 +26,7 @@ export const actions = {
     receiveLayouts: receiveLayouts,
     receiveLayoutsError: receiveLayoutsError,
     receiveNavBar: receiveNavBar,
-    receiveNavBarError: receiveNavBarError
+    receiveNavBarError: receiveNavBarError,
+    clearAllCharts: clearAllCharts,
+    removePyxleyChart: removePyxleyChart
 }

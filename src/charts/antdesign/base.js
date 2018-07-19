@@ -12,6 +12,7 @@ const formatColumnGroup = (group, sorters) => {
         for (let k in c) {
             props[k] = c[k]
         }
+
         if (c["dataIndex"] in sorters){
             props["sorter"] = sorters[c["dataIndex"]]
         }

@@ -45,6 +45,7 @@ function getFilterData(rootPath, params, dispatch, filters) {
     }
 }
 
+
 function updateLocation(alias, value){
     let url = document.location.hash;
 

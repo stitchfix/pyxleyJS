@@ -4,8 +4,10 @@ import {stringify} from 'query-string';
 const FETCH_INIT = {
     headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     },
+    mode: 'cors',
     redirect: 'manual',
     credentials: 'include'
 }

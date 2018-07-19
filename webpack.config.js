@@ -63,6 +63,9 @@ module.exports = {
             "plotly\.js": "Plotly"
         },
         {
+            "react-plotly.js": "Plot"
+        },
+        {
             'react': {
                 root: 'React',
                 commonjs2: 'react',

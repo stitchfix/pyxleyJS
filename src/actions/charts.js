@@ -28,3 +28,12 @@ export const receiveNavBar = (navlinks, brand) => ({
 export const receiveNavBarError = () => ({
     type: 'RECEIVE_PYXLEY_LAYOUT_ERROR'
 })
+
+export const clearAllCharts = () => ({
+    type: 'CLEAR_ALL_CHARTS'
+})
+
+export const removePyxleyChart = (index) => ({
+    type: 'REMOVE_PYXLEY_CHART',
+    index: index
+})
